@@ -1,0 +1,136 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Zambia Plant Disease Detector - Identify crop diseases in English, Chichewa, and Icibemba">
+    <title>Zambia Plant Disease Detector - Chongela Ifyabwelele / Chizindikiro cha Matenda</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header with Coat of Arms -->
+        <div class="header">
+            <div class="coat-of-arms">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Coat_of_arms_of_Zambia.svg/1200px-Coat_of_arms_of_Zambia.svg.png" alt="Zambia Coat of Arms" id="coatOfArms">
+            </div>
+            <div class="title-section">
+                <h1 id="appTitle">🇿🇲 Zambia Plant Disease Detector</h1>
+                <p id="appSubtitle">Chongela Ifyabwelele / Chizindikiro cha Matenda</p>
+            </div>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-bar">
+            <button class="lang-btn active" data-lang="en">
+                <i class="fas fa-language"></i> English
+            </button>
+            <button class="lang-btn" data-lang="ny">
+                <i class="fas fa-leaf"></i> Chichewa
+            </button>
+            <button class="lang-btn" data-lang="bem">
+                <i class="fas fa-tree"></i> Icibemba
+            </button>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat">
+                <i class="fas fa-leaf"></i>
+                <span id="cropsCount">8</span>
+                <small id="cropsLabel">Crops</small>
+            </div>
+            <div class="stat">
+                <i class="fas fa-bug"></i>
+                <span id="diseasesCount">12</span>
+                <small id="diseasesLabel">Diseases</small>
+            </div>
+            <div class="stat">
+                <i class="fas fa-check-circle"></i>
+                <span id="analyzedCount">0</span>
+                <small id="analyzedLabel">Analyzed</small>
+            </div>
+        </div>
+
+        <!-- Camera Section -->
+        <div class="camera-card">
+            <div class="video-container">
+                <video id="video" autoplay playsinline muted></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <div class="camera-overlay">
+                    <i class="fas fa-camera"></i>
+                    <p id="cameraText">Position leaf in frame</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="startCameraBtn" class="btn btn-primary">
+                    <i class="fas fa-video"></i> <span id="startCameraText">Start Camera</span>
+                </button>
+                <button id="captureBtn" class="btn btn-success" disabled>
+                    <i class="fas fa-camera-retro"></i> <span id="captureText">Capture & Identify</span>
+                </button>
+                <button id="uploadBtn" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> <span id="uploadText">Upload Photo</span>
+                </button>
+                <input type="file" id="fileInput" accept="image/*" style="display:none;">
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultSection" class="result-section" style="display:none;">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p id="analyzingText">Analyzing image...</p>
+                <p id="pleaseWait">Please wait</p>
+            </div>
+            <div id="resultContent"></div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-card">
+            <div class="info-header">
+                <i class="fas fa-info-circle"></i>
+                <h3 id="infoTitle">How to Use</h3>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <div class="step-text">
+                        <strong id="step1Title">Start Camera</strong>
+                        <p id="step1Desc">Click Start Camera and allow access</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <div class="step-text">
+                        <strong id="step2Title">Take Photo</strong>
+                        <p id="step2Desc">Position affected leaf clearly</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <div class="step-text">
+                        <strong id="step3Title">Get Diagnosis</strong>
+                        <p id="step3Desc">Receive treatment recommendations</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                    <strong id="contactTitle">Need Expert Help?</strong>
+                    <p id="contactText">Contact Ministry of Agriculture - 260 211 123456</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0/dist/mobilenet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
